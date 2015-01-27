@@ -1,9 +1,7 @@
 package com.example.nmcarrol_travelcalc;
 
 import java.util.ArrayList;
-import java.util.List;
 
-import android.content.ClipData.Item;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,13 +36,17 @@ public class ClaimAdapter extends ArrayAdapter{
 
             TextView tt = (TextView) v.findViewById(R.id.textView1);
             TextView tt1 = (TextView) v.findViewById(R.id.textView2);
+            TextView tt2 = (TextView) v.findViewById(R.id.textView3);
 
             if (tt != null) {
                 tt.setText(p.getName());
             }
             if (tt1 != null) {
 
-                tt1.setText(p.getDates());
+                tt1.setText(p.getStartdate());
+            }
+            if(tt2 != null){
+            	tt2.setText(p.getEnddate());
             }
             
         }

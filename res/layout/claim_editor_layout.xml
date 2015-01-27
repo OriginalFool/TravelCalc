@@ -1,8 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#b2b2b2"
+    android:gravity="center"
     android:orientation="vertical" >
-    
 
-</LinearLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="0.86"
+        android:background="#fff"
+        android:orientation="vertical"
+        android:padding="10dp" >
+
+        <Button
+            android:id="@+id/button1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="60dp"
+            android:layout_toRightOf="@+id/textView3"
+            android:text="Save" 
+            android:onClick="saveClaim"/>
+
+        <EditText
+            android:id="@+id/editText4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/editText3"
+            android:layout_below="@+id/editText3"
+            android:layout_marginTop="23dp"
+            android:ems="10"
+            android:hint="MM/DD/YYYY"
+            />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignRight="@+id/textView1"
+            android:layout_below="@+id/editText3"
+            android:text="End" />
+
+        <EditText
+            android:id="@+id/editText1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignRight="@+id/editText2"
+            android:layout_marginTop="9dp"
+            android:ems="10"
+            android:hint="Trip Name" />
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/textView3"
+            android:layout_below="@+id/editText1"
+            android:text="Start" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/editText4"
+            android:layout_below="@+id/editText4"
+            android:text="Description" />
+
+        <EditText
+            android:id="@+id/editText3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/editText2"
+            android:layout_below="@+id/textView1"
+            android:ems="10"
+            android:hint="MM/DD/YYYY"
+            />
+
+        <EditText
+            android:id="@+id/editText2"
+            android:layout_width="337dp"
+            android:layout_height="200dp"
+            android:layout_below="@+id/textView3"
+            android:layout_marginTop="16dp"
+            android:layout_weight="0.01"
+            android:ems="10"
+            android:inputType="textMultiLine" />
+
+    </RelativeLayout>
+
+</RelativeLayout>
