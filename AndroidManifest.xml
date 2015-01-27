@@ -31,6 +31,14 @@
             android:name=".ClaimEditor"
             android:label="Claim Editor" >
         </activity>
+        <activity
+            android:name=".ExpenseView"
+            android:label="Expenses" >
+        </activity>
+        <activity
+            android:name=".ExpenseEditor"
+            android:label="Expenses" >
+        </activity>
     </application>
 
 </manifest>

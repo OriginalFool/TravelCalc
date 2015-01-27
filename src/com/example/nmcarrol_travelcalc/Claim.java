@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import android.text.format.DateFormat;
 
+@SuppressWarnings("unused")
 public class Claim implements Serializable{
 
 	private static final long serialVersionUID = 1L;
@@ -14,6 +15,7 @@ public class Claim implements Serializable{
 	private String startdate;
 	private String enddate;
 	private String description;
+	private int status;
 	private ArrayList<Expense> exp;
 	
 
@@ -49,6 +51,26 @@ public class Claim implements Serializable{
 	}
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	public int getStatus() {
+		return status;
+	}
+	public void setStatus(int status) {
+		this.status = status;
+	}
+	public String convertStatus(){
+		if(status==1){
+			return "Submitted";
+		}
+		else if(status==2){
+			return "Returned";
+		}
+		else if(status==3){
+			return "InApproved";
+		}
+		else {
+			return "In Progress";
+		}
 	}
 
 	

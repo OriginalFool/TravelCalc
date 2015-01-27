@@ -21,6 +21,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.Toast;
 
+@SuppressWarnings("unused")
 public class MainActivity extends Activity {
 	private ListView tweetListView; 
 	private ClaimAdapter claimItemAdapter;
@@ -45,7 +46,15 @@ public class MainActivity extends Activity {
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
 				// TODO Auto-generated method stub
-				Log.v("CLASSNAME", "toasty");
+				
+				int status = items.get((int)id).getStatus();
+				Log.v("CLASSNAME", "" +status);
+				if(status != 1 && status != 3){
+					viewExpense(view, id);
+				}
+				else{
+					
+				}
 				
 			}
 			
@@ -53,7 +62,9 @@ public class MainActivity extends Activity {
 	    tweetListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
 	        @Override
 	        public boolean onItemLongClick(AdapterView<?> av, View v, int pos, long id) {
-	            Log.v("CLASSNAME", "TOASTY2");
+	        	
+	            Log.v("CLASSNAME", ""+id);
+	            editClaim(v,id);
 	        	return true;
 	        }
 	    });
@@ -69,7 +80,7 @@ public class MainActivity extends Activity {
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
-	private void saveToFile(){
+	public void saveToFile(){
 		FileOutputStream fos = null;
 		try {
 			fos = openFileOutput("TEST.TXT", MODE_PRIVATE);
@@ -136,22 +147,20 @@ public class MainActivity extends Activity {
 		Intent intent = new Intent(this, ClaimEditor.class);
 		startActivityForResult(intent, 0);
 	}
-	public void editClaim(View view){
+	public void editClaim(View view, long id){
 		Intent intent = new Intent(this, ClaimEditor.class);
+		intent.putExtra("Edit",items.get((int)(id)));
+		intent.putExtra("Position", (int)(id));
 		startActivityForResult(intent, 1);
 	}
 	
+	public void viewExpense(View view, long id){
+		Intent intent = new Intent(this, ExpenseView.class);
+		intent.putExtra("Edit",items.get((int)(id)));
+		intent.putExtra("Pos", (int)(id));
+		startActivityForResult(intent, 2);
+	}
 	
-	/*protected void onListItemClick(ListView l, View v, int position, long id) {
-	    Context context = getApplicationContext();
-	    CharSequence text = "Hello toast!";
-	    int duration = Toast.LENGTH_SHORT;
-
-	    Toast toast = Toast.makeText(context, text, duration);
-	    toast.show();
-	    
-
-	}*/
 	
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -164,20 +173,60 @@ public class MainActivity extends Activity {
 	        String num2 = data.getStringExtra("Desc");
 	        String num3 = data.getStringExtra("Start");
 	        String num4 = data.getStringExtra("End");
+	        int num5 = data.getIntExtra("Status", -1);
 	        
 	        c.setDescription(num2);
 	        c.setEnddate(num4);
 	        c.setName(num1);
 	        c.setStartdate(num3);
+	        c.setStatus(num5);
 	        
-	        items.add(c);
-	        saveToFile();
+	        items.add(0, c);
 	        
 	        
-	        claimItemAdapter.notifyDataSetChanged();
+	        
+	        
 	        
 	    }
+	    if (requestCode == 1 && resultCode == RESULT_OK && data != null) {
+	        String num1 = data.getStringExtra("Name");
+	        String num2 = data.getStringExtra("Desc");
+	        String num3 = data.getStringExtra("Start");
+	        String num4 = data.getStringExtra("End");
+	        int index =  data.getIntExtra("Position", 1000);
+	        int num5 = data.getIntExtra("Status", -1);
+	        
+	        c.setDescription(num2);
+	        c.setEnddate(num4);
+	        c.setName(num1);
+	        c.setStartdate(num3);
+	        c.setStatus(num5);
+	        
+	        items.set(index, c);
+	        
+	        
+	        
+	        
 	}
+	    if (requestCode == 1 && resultCode == RESULT_CANCELED
+	    		&& data != null) {
+	    	int index =  data.getIntExtra("Position", 1000);
+	    	items.remove(index);
+	    	
+	    	
+	    }
+	    if (requestCode == 2 && resultCode == RESULT_OK && data != null){
+	    	int index =  data.getIntExtra("Pos", 1000);
+	    	//ArrayList<Expense>  exp = (ArrayList<Expense>) data.getSerializableExtra("Exp");
+	    	//Log.v("CLASSNAME",exp.get(0).getName() + "TESTING");
+	    	Claim d =(Claim)data.getSerializableExtra("Exp");
+	    	Log.v("CLASSNAME",d.getExp().get(0).getName() + "THISE IS ");
+	    	items.set(index, (Claim)data.getSerializableExtra("Exp"));
+	    }
+	    
+	    saveToFile();
+	    claimItemAdapter.notifyDataSetChanged();
 	
 
+}
 }

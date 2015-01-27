@@ -48,8 +48,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            android:layout_alignRight="@+id/editText2"
+            android:layout_below="@+id/spinner1"
             android:layout_marginTop="9dp"
+            android:layout_toLeftOf="@+id/button2"
             android:ems="10"
             android:hint="Trip Name" />
 
@@ -88,6 +89,24 @@
             android:layout_weight="0.01"
             android:ems="10"
             android:inputType="textMultiLine" />
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/button1"
+            android:layout_marginLeft="28dp"
+            android:layout_toRightOf="@+id/button1"
+            android:text="Delete"
+            android:onClick="deleteClaim" />
+
+        <Spinner
+            android:id="@+id/spinner1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignRight="@+id/editText2"
+            android:layout_toRightOf="@+id/editText1"
+            android:entries="@array/spinnerItems" />
 
     </RelativeLayout>
 

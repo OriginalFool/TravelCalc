@@ -8,11 +8,11 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-public class ClaimAdapter extends ArrayAdapter{
-    private LayoutInflater inflater;
-    private ArrayList<Claim> item;
+public class ExpenseAdapter extends ArrayAdapter{
+	private LayoutInflater inflater;
+    private ArrayList<Expense> item;
 
-    public ClaimAdapter(MainActivity activity, ArrayList<Claim> items){
+    public ExpenseAdapter(ExpenseView activity, ArrayList<Expense> items){
        super(activity, R.layout.claim_row_layout, items);
        inflater = activity.getWindow().getLayoutInflater();
        item = items;
@@ -31,7 +31,7 @@ public class ClaimAdapter extends ArrayAdapter{
 
         }
         
-    	Claim p = item.get(position);
+    	Expense p = item.get(position);
 
         if (p != null) {
 
@@ -45,13 +45,13 @@ public class ClaimAdapter extends ArrayAdapter{
             }
             if (tt1 != null) {
 
-                tt1.setText(p.getStartdate());
+                tt1.setText(p.getDate());
             }
             if(tt2 != null){
-            	tt2.setText(p.getEnddate());
+            	tt2.setText(p.getCurrency()+": "+p.getAmount());
             }
-            if(tt2 != null){
-            	tt3.setText(p.convertStatus());
+            if(tt3 != null){
+            	tt3.setText("");
             }
             
         }

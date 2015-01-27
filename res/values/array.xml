@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="spinnerItems">
+        <item>In Progress</item>
+        <item>Submitted</item>
+        <item>Returned</item>
+        <item>Approved</item>
+    </string-array>
+</resources>
