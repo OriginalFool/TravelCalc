@@ -36,7 +36,7 @@ public class ClaimEditor extends Activity {
 			startdate.setText(c.getStartdate());
 			enddate.setText(c.getEnddate());
 			mySpinner.setSelection(c.getStatus());
-			if(c.getStatus() == 1 || c.getStatus() == 3){
+			if(c.getStatus() == 2 || c.getStatus() == 4){
 				edit = false;
 			}
 	}
@@ -62,7 +62,7 @@ public class ClaimEditor extends Activity {
 		if(def.matches("")){
 			def="Default";
 		}
-		if(edit ==false && (position==1||position==3 )){
+		if(edit ==false && (position==2||position==4 )){
 			Toast.makeText(getApplicationContext(), 
 				    "Editting Locked, change status to edit.", Toast.LENGTH_LONG).show();
 		}

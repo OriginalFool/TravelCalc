@@ -26,10 +26,21 @@ public class ExpenseView extends Activity {
 		setContentView(R.layout.expense_view_layout);
 		c = (Claim)getIntent().getSerializableExtra("Edit");
 		position = getIntent().getIntExtra("Pos", 1000);
-
+		
+		if(c.getExp()==null){
+			c.setExp(new ArrayList<Expense>());
+			Expense e = new Expense();
+			e.setAmount("100.00");
+			e.setCurrency("CAD");
+			e.setName("Test");
+			e.setDate("TODAY");
+			e.setDescription(" ");
+			c.addExpense(e);
+			
+		}
 		
 		expenses = c.getExp();
-
+		
 		
 		claimItemAdapter = new ExpenseAdapter(this, c.getExp());
 		tweetListView = (ListView) findViewById(R.id.list);

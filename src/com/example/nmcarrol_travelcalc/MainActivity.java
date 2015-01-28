@@ -49,11 +49,12 @@ public class MainActivity extends Activity {
 				
 				int status = items.get((int)id).getStatus();
 				Log.v("CLASSNAME", "" +status);
-				if(status != 1 && status != 3){
+				if(status != 2 && status != 4){
 					viewExpense(view, id);
 				}
 				else{
-					
+					Toast.makeText(getApplicationContext(), 
+						    "Editting Locked, change status to edit.", Toast.LENGTH_LONG).show();
 				}
 				
 			}
@@ -217,11 +218,8 @@ public class MainActivity extends Activity {
 	    }
 	    if (requestCode == 2 && resultCode == RESULT_OK && data != null){
 	    	int index =  data.getIntExtra("Pos", 1000);
-	    	//ArrayList<Expense>  exp = (ArrayList<Expense>) data.getSerializableExtra("Exp");
-	    	//Log.v("CLASSNAME",exp.get(0).getName() + "TESTING");
 	    	Claim d =(Claim)data.getSerializableExtra("Exp");
-	    	Log.v("CLASSNAME",d.getExp().get(0).getName() + "THISE IS ");
-	    	items.set(index, (Claim)data.getSerializableExtra("Exp"));
+	    	items.set(index, d);
 	    }
 	    
 	    saveToFile();
