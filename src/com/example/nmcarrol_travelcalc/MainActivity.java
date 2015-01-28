@@ -33,7 +33,6 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		
-		Log.v("CLASSNAME", "TEWST");
 		items = null;
 		items = loadFromFile();
 		
@@ -48,7 +47,7 @@ public class MainActivity extends Activity {
 				// TODO Auto-generated method stub
 				
 				int status = items.get((int)id).getStatus();
-				Log.v("CLASSNAME", "" +status);
+				
 				if(status != 2 && status != 4){
 					viewExpense(view, id);
 				}
@@ -64,7 +63,6 @@ public class MainActivity extends Activity {
 	        @Override
 	        public boolean onItemLongClick(AdapterView<?> av, View v, int pos, long id) {
 	        	
-	            Log.v("CLASSNAME", ""+id);
 	            editClaim(v,id);
 	        	return true;
 	        }
@@ -72,7 +70,7 @@ public class MainActivity extends Activity {
 	    
 	    saveToFile();
 	    //OUTPUT
-	    Log.v("CLASSNAME", items.get(0).getName());
+
 	
 	}
 	@Override
@@ -166,9 +164,14 @@ public class MainActivity extends Activity {
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		Claim c = new Claim();
-		if(items.get(0).getName()=="No Claims Started"){
-		items.remove(0);
+		//remove default item from list if list is bigger then 0.
+		int size = items.size()-1;
+		if(size>=0){
+		if(items.get(size).getName().toString().matches("No Claims Started")){
+			items.remove(size);
 		}
+		}
+		
 	    if (requestCode == 0 && resultCode == RESULT_OK && data != null) {
 	        String num1 = data.getStringExtra("Name");
 	        String num2 = data.getStringExtra("Desc");
@@ -208,7 +211,7 @@ public class MainActivity extends Activity {
 	        
 	        
 	        
-	}
+	    }
 	    if (requestCode == 1 && resultCode == RESULT_CANCELED
 	    		&& data != null) {
 	    	int index =  data.getIntExtra("Position", 1000);

@@ -30,10 +30,10 @@ public class ExpenseView extends Activity {
 		if(c.getExp()==null){
 			c.setExp(new ArrayList<Expense>());
 			Expense e = new Expense();
-			e.setAmount("100.00");
+			e.setAmount("0.00");
 			e.setCurrency("CAD");
-			e.setName("Test");
-			e.setDate("TODAY");
+			e.setName("No Expenses Added");
+			e.setDate("Today");
 			e.setDescription(" ");
 			c.addExpense(e);
 			
@@ -92,9 +92,11 @@ public class ExpenseView extends Activity {
 
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		Expense c = new Expense();
-		if(expenses.size()>0 && expenses.get(0).getName()=="No Claims Started"){
-		expenses.remove(0);
+		
+		if(expenses.size()>0 && expenses.get(expenses.size()-1).getName().matches("No Expenses Added")){
+		expenses.remove(expenses.size()-1);
 		}
+		
 	    if (requestCode == 0 && resultCode == RESULT_OK && data != null) {
 	    	String num1 = data.getStringExtra("Cat");
 	        String num2 = data.getStringExtra("Desc");
@@ -128,9 +130,12 @@ public class ExpenseView extends Activity {
 	        c.setName(num1);
 	        c.setDate(num3);
 	        c.setAmount(num5);
-	        
+	        if(expenses.size()>index){
 	        expenses.set(index, c);
-	        
+	        }
+	        else{
+	        	expenses.add(c);
+	        }
 	        
 	        
 	        
@@ -138,8 +143,9 @@ public class ExpenseView extends Activity {
 	    if (requestCode == 1 && resultCode == RESULT_CANCELED
 	    		&& data != null) {
 	    	int index =  data.getIntExtra("Position", 1000);
+	    	if(expenses.size()<0){
 	    	expenses.remove(index);
-	    	
+	    	}
 	    	
 	    }
 	    claimItemAdapter.notifyDataSetChanged();
