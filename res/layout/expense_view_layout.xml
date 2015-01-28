@@ -25,6 +25,7 @@
         android:layout_height="wrap_content"
         android:layout_alignRight="@+id/list"
         android:layout_below="@+id/list"
+        android:onClick="viewSummary"
         android:text="View Details" />
 
     <Button

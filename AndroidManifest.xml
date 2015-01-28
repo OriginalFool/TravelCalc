@@ -37,7 +37,11 @@
         </activity>
         <activity
             android:name=".ExpenseEditor"
-            android:label="Expenses" >
+            android:label="Expense Editor" >
+        </activity>
+        <activity
+            android:name=".ClaimSummary"
+            android:label="Summary" >
         </activity>
     </application>
 

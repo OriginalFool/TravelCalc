@@ -160,4 +160,10 @@ public class ExpenseView extends Activity {
         finish();
         }
 	
+	public void viewSummary(View view){
+		Intent intent = new Intent(this, ClaimSummary.class);
+		intent.putExtra("Sum", c);
+		startActivityForResult(intent, 0);
+	}
+	
 }
