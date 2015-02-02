@@ -10,6 +10,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -27,7 +28,7 @@ public class ClaimSummary extends Activity {
 		setContentView(R.layout.summary_view);
 		
 		 c = (Claim)getIntent().getSerializableExtra("Sum");
-		 sum += c.getName() + " Spending: \n";
+		 sum += c.getName() + " Totals: \n";
 		 Exp = c.getExp();
 		 Iterator<Expense> it = Exp.iterator();
 		 Hashtable<String, Double> numbers= new Hashtable<String, Double>();
@@ -37,7 +38,7 @@ public class ClaimSummary extends Activity {
 			 
 		     Expense obj = it.next();
 		     
-		     Exptext += obj.getDescription() + " " + obj.getCurrency() + ": " + obj.getAmount() + "\n";
+		     Exptext += obj.getDescription() + " " + obj.getCurrency() + ": " + obj.getAmount() + "\n" + obj.getDate() +"\n\n";
 		     
 		     double amt =(Double.valueOf(obj.getAmount()));
 		     if(numbers.containsKey(obj.getCurrency())){
@@ -58,9 +59,10 @@ public class ClaimSummary extends Activity {
 		    }
 		    
 		    
-		
+		    sum += "\nDetails: \n------------------------------------";
 		    sum += "\n" + Exptext;
 		    TextView tt = (TextView)findViewById(R.id.textView1);
+		    tt.setMovementMethod(new ScrollingMovementMethod());
 		    tt.setText(sum);
 		
 		
@@ -74,7 +76,7 @@ public class ClaimSummary extends Activity {
 		intent.setData(Uri.parse("mailto:"));
 		intent.setType("text/plain");
 		intent.putExtra(Intent.EXTRA_EMAIL  , new String[]{"nmcarrol@ualberta.ca"});
-		intent.putExtra(Intent.EXTRA_SUBJECT, c.getName()+" Claim \n");
+		intent.putExtra(Intent.EXTRA_SUBJECT, c.getName()+" Claim "+ c.getStartdate() + " - " + c.getEnddate());
 		intent.putExtra(Intent.EXTRA_TEXT   , tt.getText().toString());
 		try {
 		    startActivity(Intent.createChooser(intent, "Send mail..."));

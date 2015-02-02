@@ -35,7 +35,7 @@ public class ExpenseView extends Activity {
 			e.setCurrency("CAD");
 			e.setName("No Expenses Added");
 			e.setDate("Today");
-			e.setDescription("No Expenses Added3");
+			e.setDescription("No Expenses Added");
 			c.addExpense(e);	
 		}
 		expenses = c.getExp();
