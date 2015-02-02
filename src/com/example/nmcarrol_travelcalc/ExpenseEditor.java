@@ -23,7 +23,7 @@ public class ExpenseEditor extends Activity {
 		pos = getIntent().getIntExtra("Position", 1000);
 		Expense c = (Expense)getIntent().getSerializableExtra("Edit");
 		if(c!=null){
-			Log.v("CLASSNAME", ""+pos);
+			
 			
 			EditText category = ((EditText)this.findViewById(R.id.editText4));
 			EditText description = ((EditText)this.findViewById(R.id.editText2));
@@ -46,6 +46,7 @@ public class ExpenseEditor extends Activity {
 		return true;
 	}
 	
+	
 	public void saveClaim(View view){
 		
 		EditText category = ((EditText)this.findViewById(R.id.editText4));
@@ -55,7 +56,7 @@ public class ExpenseEditor extends Activity {
 		EditText amount = ((EditText)this.findViewById(R.id.editText5));
 		String amt2=null;
 		String def = category.getText().toString();
-		Log.v("CLASSNAME","HELLO " + def);
+		
 		if(def.matches("")){
 			def="Default";
 		}
@@ -76,6 +77,8 @@ public class ExpenseEditor extends Activity {
         setResult(RESULT_OK, output);
         finish();
 	}
+	
+	//Remove the claim unless only one in list.
 	public void deleteClaim(View view){
 		if(pos==1000){
 			finish();

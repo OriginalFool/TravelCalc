@@ -13,7 +13,7 @@ import android.widget.ListView;
 import android.widget.AdapterView.OnItemClickListener;
 
 public class ExpenseView extends Activity {
-	private ListView tweetListView; 
+	private ListView expenseListView; 
 	private ExpenseAdapter claimItemAdapter;
 	public ArrayList<Expense> expenses = new ArrayList<Expense>();
 	public Claim c;
@@ -27,6 +27,7 @@ public class ExpenseView extends Activity {
 		c = (Claim)getIntent().getSerializableExtra("Edit");
 		position = getIntent().getIntExtra("Pos", 1000);
 		
+		//Creates a blank claim to add into list.
 		if(c.getExp()==null){
 			c.setExp(new ArrayList<Expense>());
 			Expense e = new Expense();
@@ -35,42 +36,33 @@ public class ExpenseView extends Activity {
 			e.setName("No Expenses Added");
 			e.setDate("Today");
 			e.setDescription(" ");
-			c.addExpense(e);
-			
+			c.addExpense(e);	
 		}
-		
 		expenses = c.getExp();
 		
 		
 		claimItemAdapter = new ExpenseAdapter(this, c.getExp());
-		tweetListView = (ListView) findViewById(R.id.list);
-	    tweetListView.setAdapter(claimItemAdapter);
-	    tweetListView.setOnItemClickListener(new OnItemClickListener(){
-
-			@Override
-			public void onItemClick(AdapterView<?> parent, View view,
-					int position, long id) {
-				// TODO Auto-generated method stub
-				Log.v("CLASSNAME", "toasty");
-				editExpense(view,id);
-				
-				
-			}
-			
-	    });
-	    tweetListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-	        @Override
-	        public boolean onItemLongClick(AdapterView<?> av, View v, int pos, long id) {
-	        	
-	            Log.v("CLASSNAME", ""+id);
-	        	return true;
-	        }
-	    });
+		expenseListView = (ListView) findViewById(R.id.list);
+	    expenseListView.setAdapter(claimItemAdapter);
 	    
-	    //OUTPUT
-	    Log.v("CLASSNAME", expenses.get(0).getName());
-	
+		    expenseListView.setOnItemClickListener(new OnItemClickListener(){
+				@Override
+				public void onItemClick(AdapterView<?> parent, View view,
+						int position, long id) {
+					// TODO Auto-generated method stub
+					
+					editExpense(view,id);
+				}
+		    });
+		    expenseListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+		        @Override
+		        public boolean onItemLongClick(AdapterView<?> av, View v, int pos, long id) {
+
+		        	return true;
+		        }
+		    });	
 	}
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
@@ -93,10 +85,12 @@ public class ExpenseView extends Activity {
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		Expense c = new Expense();
 		
+		//Remove the default item
 		if(expenses.size()>0 && expenses.get(expenses.size()-1).getName().matches("No Expenses Added")){
 		expenses.remove(expenses.size()-1);
 		}
 		
+		//New Item added
 	    if (requestCode == 0 && resultCode == RESULT_OK && data != null) {
 	    	String num1 = data.getStringExtra("Cat");
 	        String num2 = data.getStringExtra("Desc");
@@ -117,6 +111,7 @@ public class ExpenseView extends Activity {
 	        
 	        
 	    }
+	    //Item modified
 	    if (requestCode == 1 && resultCode == RESULT_OK && data != null) {
 	        String num1 = data.getStringExtra("Cat");
 	        String num2 = data.getStringExtra("Desc");
@@ -140,16 +135,19 @@ public class ExpenseView extends Activity {
 	        
 	        
 	}
+	    //Delete button pressed
 	    if (requestCode == 1 && resultCode == RESULT_CANCELED
 	    		&& data != null) {
+	    	
 	    	int index =  data.getIntExtra("Position", 1000);
-	    	if(expenses.size()<0){
+	    	if(expenses.size()>0){
 	    	expenses.remove(index);
 	    	}
 	    	
 	    }
 	    claimItemAdapter.notifyDataSetChanged();
 	}
+	
 	@Override
 	public void onBackPressed() {
 		Intent output = new Intent();
@@ -165,5 +163,7 @@ public class ExpenseView extends Activity {
 		intent.putExtra("Sum", c);
 		startActivityForResult(intent, 0);
 	}
+	
+
 	
 }

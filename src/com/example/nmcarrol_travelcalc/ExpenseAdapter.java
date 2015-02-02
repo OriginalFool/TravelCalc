@@ -41,7 +41,7 @@ public class ExpenseAdapter extends ArrayAdapter{
             TextView tt3 = (TextView) v.findViewById(R.id.textView4);
 
             if (tt != null) {
-                tt.setText(p.getName());
+                tt.setText(p.getDescription());
             }
             if (tt1 != null) {
 

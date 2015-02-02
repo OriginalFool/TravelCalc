@@ -3,7 +3,7 @@ package com.example.nmcarrol_travelcalc;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
+
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
@@ -67,16 +67,16 @@ public class ClaimEditor extends Activity {
 				    "Editting Locked, change status to edit.", Toast.LENGTH_LONG).show();
 		}
 		else{
-        
-        Intent output = new Intent();
-        output.putExtra("Name", def);
-        output.putExtra("Desc", description.getText().toString());
-        output.putExtra("Start", startdate.getText().toString());
-        output.putExtra("End", enddate.getText().toString());
-        output.putExtra("Status", position);
-        output.putExtra("Position", pos);
-        setResult(RESULT_OK, output);
-        finish();}
+			
+			Intent output = new Intent();
+			output.putExtra("Name", def);
+			output.putExtra("Desc", description.getText().toString());
+			output.putExtra("Start", startdate.getText().toString());
+			output.putExtra("End", enddate.getText().toString());
+			output.putExtra("Status", position);
+			output.putExtra("Position", pos);
+			setResult(RESULT_OK, output);
+			finish();}
 	}
 	public void deleteClaim(View view){
 		if(pos==1000){

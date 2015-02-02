@@ -13,7 +13,6 @@ import android.app.ListActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
@@ -166,11 +165,7 @@ public class MainActivity extends Activity {
 		Claim c = new Claim();
 		//remove default item from list if list is bigger then 0.
 		int size = items.size()-1;
-		if(size>=0){
-		if(items.get(size).getName().toString().matches("No Claims Started")){
-			items.remove(size);
-		}
-		}
+		
 		
 	    if (requestCode == 0 && resultCode == RESULT_OK && data != null) {
 	        String num1 = data.getStringExtra("Name");
@@ -205,6 +200,7 @@ public class MainActivity extends Activity {
 	        c.setName(num1);
 	        c.setStartdate(num3);
 	        c.setStatus(num5);
+	        c.setExp(items.get(index).getExp());
 	        
 	        items.set(index, c);
 	        
@@ -224,6 +220,13 @@ public class MainActivity extends Activity {
 	    	Claim d =(Claim)data.getSerializableExtra("Exp");
 	    	items.set(index, d);
 	    }
+	    
+	    size = items.size()-1;
+	    if(size>0){
+			if(items.get(size).getName().matches("No Claims Started")){
+				items.remove(size);
+			}
+			}
 	    
 	    saveToFile();
 	    claimItemAdapter.notifyDataSetChanged();
