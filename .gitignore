@@ -1,16 +1,11 @@
-# Built application files
-*.apk
-*.ap_
+#Taken From:
+#https://github.com/github/gitignore/blob/master/Android.gitignore
 
 # Files for the Dalvik VM
 *.dex
 
 # Java class files
 *.class
-
-# Generated files
-bin/
-gen/
 
 # Gradle files
 .gradle/
