@@ -11,7 +11,8 @@ import android.widget.TextView;
 public class ClaimAdapter extends ArrayAdapter{
     private LayoutInflater inflater;
     private ArrayList<Claim> item;
-
+    
+    //adapter to populate listview
     public ClaimAdapter(MainActivity activity, ArrayList<Claim> items){
        super(activity, R.layout.claim_row_layout, items);
        inflater = activity.getWindow().getLayoutInflater();
@@ -19,6 +20,7 @@ public class ClaimAdapter extends ArrayAdapter{
        
     }
     
+    //sets the listview as specified.
     @Override
     public View getView(int position, View convertView, ViewGroup parent){
     	View v = convertView;

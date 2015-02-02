@@ -19,7 +19,7 @@ public class ExpenseView extends Activity {
 	public Claim c;
 	private int position;
 
-	
+	//starts activity with needed data.
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -35,7 +35,7 @@ public class ExpenseView extends Activity {
 			e.setCurrency("CAD");
 			e.setName("No Expenses Added");
 			e.setDate("Today");
-			e.setDescription(" ");
+			e.setDescription("No Expenses Added");
 			c.addExpense(e);	
 		}
 		expenses = c.getExp();
@@ -70,11 +70,13 @@ public class ExpenseView extends Activity {
 		return true;
 	}
 	
+	//add new expense
 	public void addExpense(View view){
 		Intent intent = new Intent(this, ExpenseEditor.class);
 		startActivityForResult(intent, 0);
 	}
 	
+	//edit old expense
 	public void editExpense(View view, long id){
 		Intent intent = new Intent(this, ExpenseEditor.class);
 		intent.putExtra("Edit",expenses.get((int)(id)));
@@ -148,6 +150,7 @@ public class ExpenseView extends Activity {
 	    claimItemAdapter.notifyDataSetChanged();
 	}
 	
+	//ensures saving of expenses but poorly.
 	@Override
 	public void onBackPressed() {
 		Intent output = new Intent();
@@ -158,6 +161,7 @@ public class ExpenseView extends Activity {
         finish();
         }
 	
+	//view the summary
 	public void viewSummary(View view){
 		Intent intent = new Intent(this, ClaimSummary.class);
 		intent.putExtra("Sum", c);

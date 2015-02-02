@@ -18,6 +18,7 @@ public class ClaimEditor extends Activity {
 	private int pos;
 	private boolean edit = true;
 	
+	//initialize editor
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.claim_editor_layout);
@@ -49,6 +50,7 @@ public class ClaimEditor extends Activity {
 		return true;
 	}
 	
+	//Save the new claim if allowed.
 	public void saveClaim(View view){
 		
 		EditText name = ((EditText)this.findViewById(R.id.editText1));
@@ -78,6 +80,8 @@ public class ClaimEditor extends Activity {
 			setResult(RESULT_OK, output);
 			finish();}
 	}
+	
+	//deletes the current claim.
 	public void deleteClaim(View view){
 		if(pos==1000){
 			finish();

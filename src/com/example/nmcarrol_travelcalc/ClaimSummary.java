@@ -21,6 +21,7 @@ public class ClaimSummary extends Activity {
 	private String sum = "";
 	private String Exptext ="";
 	
+	//populate view with items appropriate to claim.
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.summary_view);
@@ -30,6 +31,7 @@ public class ClaimSummary extends Activity {
 		 Exp = c.getExp();
 		 Iterator<Expense> it = Exp.iterator();
 		 Hashtable<String, Double> numbers= new Hashtable<String, Double>();
+		 //Add up currencies and get all expenses.
 		 while(it.hasNext())
 		 {
 			 
@@ -65,6 +67,7 @@ public class ClaimSummary extends Activity {
 			 
 	}
 	
+	//email claim as displayed in summary.
 	public void shareClaim(View view){
 		TextView tt = (TextView)findViewById(R.id.textView1);
 		Intent intent = new Intent(Intent.ACTION_SEND);

@@ -27,6 +27,7 @@ public class MainActivity extends Activity {
 	public ArrayList<Claim> items;
 
 	
+	//starts app with default or loaded data.
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -78,6 +79,8 @@ public class MainActivity extends Activity {
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
+	
+	//file output
 	public void saveToFile(){
 		FileOutputStream fos = null;
 		try {
@@ -113,6 +116,7 @@ public class MainActivity extends Activity {
 		}
 	}
 	
+	//loads claim data from file.
 	private ArrayList<Claim> loadFromFile() {
 		try {
 			FileInputStream fis = openFileInput("TEST.TXT");
@@ -141,10 +145,13 @@ public class MainActivity extends Activity {
 		return items;
 	}
 	
+	//add a new claim
 	public void addClaim(View view){
 		Intent intent = new Intent(this, ClaimEditor.class);
 		startActivityForResult(intent, 0);
 	}
+	
+	//edit old claim
 	public void editClaim(View view, long id){
 		Intent intent = new Intent(this, ClaimEditor.class);
 		intent.putExtra("Edit",items.get((int)(id)));
@@ -152,6 +159,7 @@ public class MainActivity extends Activity {
 		startActivityForResult(intent, 1);
 	}
 	
+	//view claims expenses
 	public void viewExpense(View view, long id){
 		Intent intent = new Intent(this, ExpenseView.class);
 		intent.putExtra("Edit",items.get((int)(id)));
@@ -166,7 +174,7 @@ public class MainActivity extends Activity {
 		//remove default item from list if list is bigger then 0.
 		int size = items.size()-1;
 		
-		
+		//add new claim
 	    if (requestCode == 0 && resultCode == RESULT_OK && data != null) {
 	        String num1 = data.getStringExtra("Name");
 	        String num2 = data.getStringExtra("Desc");
@@ -187,6 +195,7 @@ public class MainActivity extends Activity {
 	        
 	        
 	    }
+	    //edit existing claim
 	    if (requestCode == 1 && resultCode == RESULT_OK && data != null) {
 	        String num1 = data.getStringExtra("Name");
 	        String num2 = data.getStringExtra("Desc");
@@ -208,6 +217,8 @@ public class MainActivity extends Activity {
 	        
 	        
 	    }
+	    
+	    //delete claim
 	    if (requestCode == 1 && resultCode == RESULT_CANCELED
 	    		&& data != null) {
 	    	int index =  data.getIntExtra("Position", 1000);
@@ -215,12 +226,15 @@ public class MainActivity extends Activity {
 	    	
 	    	
 	    }
+	    
+	    //Save expenses to claim
 	    if (requestCode == 2 && resultCode == RESULT_OK && data != null){
 	    	int index =  data.getIntExtra("Pos", 1000);
 	    	Claim d =(Claim)data.getSerializableExtra("Exp");
 	    	items.set(index, d);
 	    }
 	    
+	    //remove default claim.
 	    size = items.size()-1;
 	    if(size>0){
 			if(items.get(size).getName().matches("No Claims Started")){

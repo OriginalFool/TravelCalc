@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import android.text.format.DateFormat;
 
+//basic claim class
 @SuppressWarnings("unused")
 public class Claim implements Serializable{
 

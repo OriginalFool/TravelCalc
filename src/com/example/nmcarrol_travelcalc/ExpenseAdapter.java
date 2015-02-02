@@ -11,7 +11,8 @@ import android.widget.TextView;
 public class ExpenseAdapter extends ArrayAdapter{
 	private LayoutInflater inflater;
     private ArrayList<Expense> item;
-
+    
+    //adapts expense items
     public ExpenseAdapter(ExpenseView activity, ArrayList<Expense> items){
        super(activity, R.layout.claim_row_layout, items);
        inflater = activity.getWindow().getLayoutInflater();
@@ -19,6 +20,7 @@ public class ExpenseAdapter extends ArrayAdapter{
        
     }
     
+    //populates listview with expenses as specified.
     @Override
     public View getView(int position, View convertView, ViewGroup parent){
     	View v = convertView;

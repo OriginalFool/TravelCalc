@@ -17,6 +17,7 @@ import android.widget.TextView;
 public class ExpenseEditor extends Activity {
 	private int pos;
 	
+	//Start activity
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.expense_editor_layout);
@@ -46,7 +47,7 @@ public class ExpenseEditor extends Activity {
 		return true;
 	}
 	
-	
+	//save the claim
 	public void saveClaim(View view){
 		
 		EditText category = ((EditText)this.findViewById(R.id.editText4));
