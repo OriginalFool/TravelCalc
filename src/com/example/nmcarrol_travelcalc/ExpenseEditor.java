@@ -48,7 +48,7 @@ public class ExpenseEditor extends Activity {
 	}
 	
 	//save the claim
-	public void saveClaim(View view){
+	public void saveExpense(View view){
 		
 		EditText category = ((EditText)this.findViewById(R.id.editText4));
 		EditText description = ((EditText)this.findViewById(R.id.editText2));
@@ -80,7 +80,7 @@ public class ExpenseEditor extends Activity {
 	}
 	
 	//Remove the claim unless only one in list.
-	public void deleteClaim(View view){
+	public void deleteExpense(View view){
 		if(pos==1000){
 			finish();
 		}

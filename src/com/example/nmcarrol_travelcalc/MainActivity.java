@@ -22,7 +22,7 @@ import android.widget.Toast;
 
 @SuppressWarnings("unused")
 public class MainActivity extends Activity {
-	private ListView tweetListView; 
+	private ListView claimListView; 
 	private ClaimAdapter claimItemAdapter;
 	public ArrayList<Claim> items;
 
@@ -37,9 +37,9 @@ public class MainActivity extends Activity {
 		items = loadFromFile();
 		
 		claimItemAdapter = new ClaimAdapter(this, items);
-		tweetListView = (ListView) findViewById(R.id.list);
-	    tweetListView.setAdapter(claimItemAdapter);
-	    tweetListView.setOnItemClickListener(new OnItemClickListener(){
+		claimListView = (ListView) findViewById(R.id.list);
+	    claimListView.setAdapter(claimItemAdapter);
+	    claimListView.setOnItemClickListener(new OnItemClickListener(){
 
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
@@ -59,7 +59,7 @@ public class MainActivity extends Activity {
 			}
 			
 	    });
-	    tweetListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+	    claimListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
 	        @Override
 	        public boolean onItemLongClick(AdapterView<?> av, View v, int pos, long id) {
 	        	
